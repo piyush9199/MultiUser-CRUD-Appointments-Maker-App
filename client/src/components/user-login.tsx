@@ -42,6 +42,7 @@ export function UserLogin(){
                     <dd><input type="text" name="UserId" className="form-control" onChange={formik.handleChange}/></dd>
                     <dt className="mb-2">Password</dt>
                     <dd><input type="password" name="Password" className="form-control" onChange={formik.handleChange}/></dd>
+                    <div style={{fontStyle: "italic"}}>Userid: piyush9199, Password: admin</div>
                 </dl>
                 <button type="submit" className="btn btn-warning w-100">Login</button>
                 <Link to="/register" className="text-decoration-none" >Don't have an account?</Link>
