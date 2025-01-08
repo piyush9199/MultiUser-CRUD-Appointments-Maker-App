@@ -14,7 +14,7 @@ export function UserRegistration(){
             Mobile: ''
         },
         onSubmit: (user)=>{
-            axios.post('http://127.0.0.1:2000/register-user', user).then(()=>{
+            axios.post('https://multiuser-crud-appointments-maker-app.onrender.com/register-user', user).then(()=>{
                 alert('registered successfully')
                 navigate('/login')
             })

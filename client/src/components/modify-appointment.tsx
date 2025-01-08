@@ -10,7 +10,7 @@ export function ModifyAppointment(){
     let navigate = useNavigate()
 
     useEffect(()=>{
-        axios.get(`http://127.0.0.1:2000/modify-appointment/${params.id}`).then((response)=>{
+        axios.get(`https://multiuser-crud-appointments-maker-app.onrender.com/modify-appointment/${params.id}`).then((response)=>{
             setAppointments(response.data)
         })
         .catch(error => console.error(error)
@@ -28,7 +28,7 @@ export function ModifyAppointment(){
         enableReinitialize: true,
 
         onSubmit: (appointment)=>{
-            axios.put(`http://127.0.0.1:2000/update-appointment/${params.id}`, appointment).then(()=>{
+            axios.put(`https://multiuser-crud-appointments-maker-app.onrender.com/update-appointment/${params.id}`, appointment).then(()=>{
                 alert("Appointment details modified successfully")
                 navigate('/user-panel')
             })

@@ -16,7 +16,7 @@ export function AddAppointment(){
             UserId: cookies['userid']
         },
         onSubmit: (appointmentInput)=>{
-            axios.post('http://127.0.0.1:2000/add-appointment', appointmentInput).then(()=>{
+            axios.post('https://multiuser-crud-appointments-maker-app.onrender.com/add-appointment', appointmentInput).then(()=>{
                 alert('Appointment added successfully');
                 navigate('/user-panel')
             })
