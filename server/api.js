@@ -2,7 +2,8 @@ var express = require("express")
 var mongoClient = require("mongodb").MongoClient
 var cors = require("cors")
 require('dotenv').config()
-var PORT = process.env.CON_STRING
+const CON_STRING = process.env.CON_STRING
+const PORT = process.env.PORT || 2222
 
 var app = express()
 
@@ -14,7 +15,7 @@ app.use(express.urlencoded({extended:"true"}))
 // API user routes
 app.get('/users', (req, res)=>{
     
-    mongoClient.connect(PORT).then((clientObj)=>{
+    mongoClient.connect(CON_STRING).then((clientObj)=>{
         var database = clientObj.db('todo-react')
         database.collection('tblusers').find().toArray().then((docs)=>{
             res.send(docs)
@@ -25,7 +26,7 @@ app.get('/users', (req, res)=>{
 })
 
 app.post('/register-user', (req, res)=>{
-    mongoClient.connect(PORT).then((clientObj)=>{
+    mongoClient.connect(CON_STRING).then((clientObj)=>{
 
         var user = {
             UserId: req.body.UserId,
@@ -45,7 +46,7 @@ app.post('/register-user', (req, res)=>{
 })
 
 app.put('/edit-user/:userid',(req, res)=>{
-    mongoClient.connect(PORT).then((clientObj)=>{
+    mongoClient.connect(CON_STRING).then((clientObj)=>{
         var database = clientObj.db('todo-react')
         database.collection('tblusers').updateOne({UserId:req.params.userid},{$set:{
             UserId: req.body.UserId, 
@@ -60,7 +61,7 @@ app.put('/edit-user/:userid',(req, res)=>{
 })
 
 app.delete('/delete-user/:userid', (req, res)=>{
-    mongoClient.connect(PORT).then((clientObj)=>{
+    mongoClient.connect(CON_STRING).then((clientObj)=>{
         var database = clientObj.db('todo-react')
         database.collection('tblusers').deleteOne({UserId:req.params.userid}).then(()=>{
             console.log("deleted successfully");
@@ -72,7 +73,7 @@ app.delete('/delete-user/:userid', (req, res)=>{
 // APPOINTMENT ROUTES
 
 app.get('/appointments/:userid', (req, res)=>{
-    mongoClient.connect(PORT).then((clientObj)=>{
+    mongoClient.connect(CON_STRING).then((clientObj)=>{
         var database = clientObj.db('todo-react')
         database.collection('tblappointments').find({UserId: req.params.userid}).toArray().then(docs=>{
             res.send(docs)
@@ -90,7 +91,7 @@ app.post('/add-appointment', (req, res)=>{
         UserId: req.body.UserId
     }
 
-    mongoClient.connect(PORT).then((clientObj)=>{
+    mongoClient.connect(CON_STRING).then((clientObj)=>{
         var database = clientObj.db('todo-react')
         database.collection('tblappointments').insertOne(appointment).then(()=>{
             console.log("appointment added");
@@ -100,7 +101,7 @@ app.post('/add-appointment', (req, res)=>{
     })
 
 app.get('/modify-appointment/:id', (req, res) => {
-    mongoClient.connect(PORT).then((clientObj) => {
+    mongoClient.connect(CON_STRING).then((clientObj) => {
         var database = clientObj.db('todo-react')
         database.collection('tblappointments').find({ Appointment_Id: parseInt(req.params.id) }).toArray().then(docs => {
             res.send(docs)
@@ -110,7 +111,7 @@ app.get('/modify-appointment/:id', (req, res) => {
 })
 
 app.put('/update-appointment/:id', (req, res) => {
-    mongoClient.connect(PORT).then((clientObj) => {
+    mongoClient.connect(CON_STRING).then((clientObj) => {
         var database = clientObj.db('todo-react')
         database.collection('tblappointments').updateOne({Appointment_Id: parseInt(req.params.id)}, {
             $set: {
@@ -128,7 +129,7 @@ app.put('/update-appointment/:id', (req, res) => {
 })
 
 app.delete('/delete-appointment/:id', (req, res) => {
-    mongoClient.connect(PORT).then((clientObj) => {
+    mongoClient.connect(CON_STRING).then((clientObj) => {
         var database = clientObj.db('todo-react')
         database.collection('tblappointments').deleteOne({Appointment_Id: parseInt(req.params.id)}).then(() => {
             console.log("appointment deleted successfully");
@@ -137,6 +138,6 @@ app.delete('/delete-appointment/:id', (req, res) => {
     })
 })
 
-app.listen(2000, ()=>{
-    console.log("server listening at 2000");
+app.listen(PORT, ()=>{
+    console.log(`server listening at ${PORT}`);
 })
