@@ -1,0 +1,1 @@
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"7474c90c40084e90a8e160cd499e7b4d","collectionName":"tblusers","type":"collection"}

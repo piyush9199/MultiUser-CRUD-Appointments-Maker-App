@@ -1,0 +1,19 @@
+#root {
+  /* max-width: 1280px; */
+  margin: 0 auto;
+  /* padding: 2rem; */
+  text-align: center;
+}
+
+.container-fluid{
+  width: 100vw !important;
+}
+
+.bg-picture{
+  background-image: url("/bgimage.jpg");
+  background-position: center;
+  height: 100vh !important;
+  width: 100vw !important;
+  background-size: cover;
+  background-repeat: none;
+}
