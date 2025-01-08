@@ -3,7 +3,7 @@ var mongoClient = require("mongodb").MongoClient
 var cors = require("cors")
 require('dotenv').config()
 const CON_STRING = process.env.CON_STRING
-const PORT = process.env.PORT || 2222
+const PORT = process.env.PORT || 2000
 
 var app = express()
 
