@@ -21,6 +21,23 @@ Full-Stack web application built using the MERN (MongoDB, Express, React, Node.j
 |  Express.js  |   Server framework   |
 |   MongoDB   |    Database  |
 |   Bootstrap |   Responsive styling   |
+| Typescript | Language |
+| React Router | Client and Server-side Routing |
+| Vite | Build tool |
 |   npm   |   Package management   |
 |  Netlify  |    Frontend deployment  |
 |   Render   |   Backend deployment   |
+
+# Installation
+## Clone the repository
+```
+git clone [https://github.com/piyush9199/eshopper-app.git](https://github.com/piyush9199/MultiUser-CRUD-Appointments-Maker-App.git)
+```
+
+## Install dependencies
+```
+npm install
+```
+
+## Run development server
+```npm run dev``` - vite build tool
