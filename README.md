@@ -43,7 +43,7 @@ Full-Stack web application built using the MERN (MongoDB, Express, React, Node.j
 # Installation
 ## Clone the repository
 ```
-git clone [https://github.com/piyush9199/eshopper-app.git](https://github.com/piyush9199/MultiUser-CRUD-Appointments-Maker-App.git)
+git clone https://github.com/piyush9199/MultiUser-CRUD-Appointments-Maker-App.git
 ```
 
 ## Install dependencies
