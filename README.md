@@ -1,5 +1,5 @@
 # Appointments-Maker-App
-Full-Stack web application built using the MERN (MongoDB, Express, React, Node.js) stack that provides users with a secure and intuitive platform for personal Note management. The application offers user authentication and personalized note storage with date stamp.
+Full-Stack web application built using the MERN (MongoDB, Express, React, Node.js) stack that provides users with a secure and intuitive platform for personal Note management with CRUD operations. The application offers user authentication and personalized note storage with date stamp.
 # Key Features
     User Authentication
         Secure user registration
@@ -20,6 +20,7 @@ Full-Stack web application built using the MERN (MongoDB, Express, React, Node.j
 | Node.js     |   Backend runtime   |
 |  Express.js  |   Server framework   |
 |   MongoDB   |    Database  |
+| REST API Architecture | GET POST PUT DELETE (CRUD), JSON |
 |   Bootstrap |   Responsive styling   |
 | Typescript | Language |
 | React Router | Client and Server-side Routing |
@@ -27,7 +28,18 @@ Full-Stack web application built using the MERN (MongoDB, Express, React, Node.j
 |   npm   |   Package management   |
 |  Netlify  |    Frontend deployment  |
 |   Render   |   Backend deployment   |
+  
+# Library 
 
+| Library   |  Purpose    |
+| :---         | :--- |
+| Formik | Form handling |
+| Axios | HTTP Client(REST API) |
+| React-router | Routing |
+| React-cookie | Cookie storage |
+| Bootstrap | CSS Framework |
+| Bootstrap-icons | Icons |
+| Cors | Middleware |
 # Installation
 ## Clone the repository
 ```
@@ -40,4 +52,6 @@ npm install
 ```
 
 ## Run development server
-```npm run dev``` - vite build tool
+```npm run dev``` - Frontend(Vite)
+```npm start``` - Backend(Node)
+
