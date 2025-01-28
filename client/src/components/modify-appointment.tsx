@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { useFormik } from "formik";
+import { ToastContainer, toast } from "react-toastify";
 
 
 export function ModifyAppointment(){
+    const handleToast = () => toast.success("Appointment details modified successfully")
     const [appointments, setAppointments] = useState([{Appointment_Id:'', Title:'', Description: '', Date: '', UserId:''}])
     let params = useParams()
     let navigate = useNavigate()
@@ -29,7 +31,6 @@ export function ModifyAppointment(){
 
         onSubmit: (appointment)=>{
             axios.put(`https://multiuser-crud-appointments-maker-app.onrender.com/update-appointment/${params.id}`, appointment).then(()=>{
-                alert("Appointment details modified successfully")
                 navigate('/user-panel')
             })
             .catch(error=>console.error(error))
@@ -55,10 +56,14 @@ export function ModifyAppointment(){
                     <dd><input type="text" value={formik.values.UserId} disabled name="UserId" onChange={formik.handleChange} className="form-control"/></dd>
                    
                 </dl>
-                <button className="btn btn-success me-3" type="submit" >Save Changes</button>
+                <button className="btn btn-success me-3" type="submit" onClick={handleToast} >Save Changes</button>
                 <button type="button" onClick={formik.handleReset} className="btn btn-secondary me-3">Reset</button>
                 <Link to="/user-panel" className="btn btn-danger" type="button">Cancel</Link>
             </form>
+            <ToastContainer
+                position="bottom-right"
+                autoClose={3000}
+            />
         </div>
     )
 }
