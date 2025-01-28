@@ -1,4 +1,4 @@
-# MultiUserAppointmentsMaker
+# Personal Tasktracker
 Full-Stack web application built using the MERN (MongoDB, Express, React, Node.js) stack that provides users with a secure and intuitive platform for personal Note management with CRUD operations. The application offers user authentication and personalized note storage with date stamp.
 # Key Features
     User Authentication
