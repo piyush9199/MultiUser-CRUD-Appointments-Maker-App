@@ -40,6 +40,7 @@ Full-Stack web application built using the MERN (MongoDB, Express, React, Node.j
 | Bootstrap | CSS Framework |
 | Bootstrap-icons | Icons |
 | Cors | Middleware |
+| React-Toastify | Toast notifications |
 # Installation
 ## Clone the repository
 ```
