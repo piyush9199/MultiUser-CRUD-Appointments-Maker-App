@@ -4,10 +4,15 @@ import { Link, useNavigate } from "react-router-dom"
 import axios from "axios"
 import { AppointmentContract } from "../contracts/AppointmentContract"
 import 'bootstrap'
+import { ToastContainer, toast } from "react-toastify";
+import { Modal } from "react-bootstrap"
+import Button from 'react-bootstrap/Button';
 
 
 export function UserPanel() {
     const [appointments, setAppointments] = useState<AppointmentContract[]>()
+    const [showModal, setShowModal] = useState(false)
+    const [selectedAppointmentId, setSelectedAppointmentId] = useState<number | null>(null);
     let navigate = useNavigate()
 
     useEffect(() => {
@@ -15,7 +20,7 @@ export function UserPanel() {
             .then((response) => {
                 setAppointments(response.data)
             })
-            .catch(error=>console.error(error))
+            .catch(error => console.error(error))
 
     }, [])
 
@@ -24,21 +29,23 @@ export function UserPanel() {
         removeCookie('userid')
         navigate('/login')
     }
+
+    const handleConfirmDelete = (id: number) => {
+        setSelectedAppointmentId(id);
+        setShowModal(true);
+    };
+
     function handleRemoveAppointment(id: number) {
         axios.delete(`https://multiuser-crud-appointments-maker-app.onrender.com/delete-appointment/${id}`)
             .then(() => {
-                return axios.get(`https://multiuser-crud-appointments-maker-app.onrender.com/appointments/${cookies['userid']}`)   //re-fetch the data again
-            })
-            .then((response) => {
-                setAppointments(response.data)      //update latest data into appointments state
+                setAppointments(prevAppointments => prevAppointments?.filter(appointment => appointment.Appointment_Id !== id))      //update latest data into appointments state
+                setShowModal(false)
                 navigate('/user-panel')
-                window.location.reload()
+                toast.error("Appointment Deleted")
             })
-            .catch(error =>console.log(error)
+            .catch(error => console.log(error)
             )
     }
-
-
 
 
     return (
@@ -63,32 +70,50 @@ export function UserPanel() {
                                 </div>
                                 <div className="m-2">
                                     <Link to={`/modify-appointment/${appointment.Appointment_Id}`} className="btn btn-warning rounded-3 me-1 bi bi-pencil-square"> Modify</Link>
-                                    <button data-bs-target={`#removePrompt-${appointment.Appointment_Id}`} data-bs-toggle="modal" className="btn btn-danger rounded-3 ms-2 bi bi-x-square"> Remove</button>
+                                    <button onClick={() => handleConfirmDelete(appointment.Appointment_Id)} className="btn btn-danger rounded-3 ms-2 bi bi-x-square"> Remove</button>
                                 </div>
 
 
-                                {/* Bootstrap modal */}
-                                <div className="modal fade" id={`removePrompt-${appointment.Appointment_Id}`}>
-                                        <div className="modal-dialog modal-dialog-centered">
-                                            <div className="modal-content">
-                                                <div className="modal-header">
-                                                    <h2>Remove appointment</h2>
-                                                    <button data-bs-dismiss="modal" className="btn btn-close"></button>
-                                                </div>
-                                                <div className="modal-body fw-normal">
-                                                    <h2 className="text-danger fw-semibold">Are you sure?</h2>
-                                                    <button onClick={()=>handleRemoveAppointment(appointment.Appointment_Id)} className="btn btn-danger me-4 fs-5">Yes</button>
-                                                    <button data-bs-dismiss="modal" className="btn btn-info fs-5">No</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                            </div>
+                                {/* React-bootstrap Modal used */}
+                                <Modal centered
+                                    show={showModal}
+                                    onHide={() => setShowModal(false)}
+                                    backdrop="static"
+                                    keyboard={false}
+                                >
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Confirm Delete</Modal.Title>
+                                    </Modal.Header>
 
+                                    <Modal.Body>
+                                        Are you sure you want to delete this appointment?
+                                    </Modal.Body>
+
+                                    <Modal.Footer>
+                                        <Button variant="secondary" onClick={() => setShowModal(false)}>
+                                            No
+                                        </Button>
+                                        <Button
+                                            variant="danger"
+                                            onClick={() => {
+                                                if (selectedAppointmentId) {
+                                                    handleRemoveAppointment(selectedAppointmentId);
+                                                }
+                                            }}
+                                        >
+                                            Yes
+                                        </Button>
+                                    </Modal.Footer>
+                                </Modal>
+                            </div>
                         )
                     }
                 </div >
             </section >
+            <ToastContainer
+                position="bottom-right"
+                autoClose={3000}
+            />
         </div >
     )
 }
