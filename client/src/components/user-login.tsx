@@ -44,6 +44,7 @@ export function UserLogin(){
                     <dd><input type="password" name="Password" className="form-control" onChange={formik.handleChange}/></dd>
                     <div style={{fontStyle: "italic"}}>Userid: piyush9199, Password: admin</div>
                 </dl>
+                <div className="text-danger fw-bold fst-italic mb-2">Please wait for 1 min after clicking Login</div>
                 <button type="submit" className="btn btn-warning w-100">Login</button>
                 <Link to="/register" className="text-decoration-none" >Don't have an account?</Link>
             </form>
