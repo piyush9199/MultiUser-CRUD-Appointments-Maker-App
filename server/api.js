@@ -13,7 +13,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: "true" }))
 
 // Disable render spindown
-// const renderUrl = "https://multiuser-crud-appointments-maker-app.onrender.com";
+// const renderUrl = "https://personal-tasktracker.onrender.com";
 // const interval = 40000;
 
 // function reloadWebsite() {

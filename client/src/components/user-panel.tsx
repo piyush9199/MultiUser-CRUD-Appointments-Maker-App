@@ -16,7 +16,7 @@ export function UserPanel() {
     let navigate = useNavigate()
 
     useEffect(() => {
-        axios.get(`https://multiuser-crud-appointments-maker-app.onrender.com/appointments/${cookies['userid']}`)
+        axios.get(`https://personal-tasktracker.onrender.com/appointments/${cookies['userid']}`)
             .then((response) => {
                 setAppointments(response.data)
             })
@@ -36,7 +36,7 @@ export function UserPanel() {
     };
 
     function handleRemoveAppointment(id: number) {
-        axios.delete(`https://multiuser-crud-appointments-maker-app.onrender.com/delete-appointment/${id}`)
+        axios.delete(`https://personal-tasktracker.onrender.com/delete-appointment/${id}`)
             .then(() => {
                 setAppointments(prevAppointments => prevAppointments?.filter(appointment => appointment.Appointment_Id !== id))      //update latest data into appointments state
                 setShowModal(false)

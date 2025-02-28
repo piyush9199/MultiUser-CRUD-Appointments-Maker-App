@@ -12,7 +12,7 @@ export function ModifyAppointment(){
     let navigate = useNavigate()
 
     useEffect(()=>{
-        axios.get(`https://multiuser-crud-appointments-maker-app.onrender.com/modify-appointment/${params.id}`).then((response)=>{
+        axios.get(`https://personal-tasktracker.onrender.com/modify-appointment/${params.id}`).then((response)=>{
             setAppointments(response.data)
         })
         .catch(error => console.error(error)

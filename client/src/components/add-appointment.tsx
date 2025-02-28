@@ -18,7 +18,7 @@ export function AddAppointment() {
             UserId: cookies['userid']
         },
         onSubmit: (appointmentInput) => {
-            axios.post('https://multiuser-crud-appointments-maker-app.onrender.com/add-appointment', appointmentInput).then(() => {
+            axios.post('https://personal-tasktracker.onrender.com/add-appointment', appointmentInput).then(() => {
                 navigate('/user-panel')
             })
                 .catch(error => console.error(error)
