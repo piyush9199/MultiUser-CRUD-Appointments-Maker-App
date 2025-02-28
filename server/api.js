@@ -13,20 +13,20 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: "true" }))
 
 // Disable render spindown
-const renderUrl = "https://multiuser-crud-appointments-maker-app.onrender.com";
-const interval = 40000;
+// const renderUrl = "https://multiuser-crud-appointments-maker-app.onrender.com";
+// const interval = 40000;
 
-function reloadWebsite() {
-    axios.get(renderUrl)
-        .then(() => {
-            console.log("website reloded");
-        })
-        .catch((error) => {
-            console.error(`Error : ${error.message}`);
-        });
-}
+// function reloadWebsite() {
+//     axios.get(renderUrl)
+//         .then(() => {
+//             console.log("website reloded");
+//         })
+//         .catch((error) => {
+//             console.error(`Error : ${error.message}`);
+//         });
+// }
 
-setInterval(reloadWebsite, interval);
+// setInterval(reloadWebsite, interval);
 
 
 // API user routes
